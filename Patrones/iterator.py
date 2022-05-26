@@ -1,7 +1,7 @@
 from __future__ import annotations
 from collections.abc import Iterable, Iterator
 from typing import Any, List
-
+from textblob import TextBlob
 
 """
 To create an iterator in Python, there are two abstract classes from the built-
@@ -76,13 +76,22 @@ if __name__ == "__main__":
     # Collection classes, depending on the level of indirection you want to keep
     # in your program.
     collection = WordsCollection()
-    collection.add_item("First")
-    collection.add_item("Second")
-    collection.add_item("Third")
+    eb1=TextBlob("First")
+    print(eb1.translate(from_lang="in",to="es"))
+    collection.add_item(eb1)
+    eb2=TextBlob("Second")
+    print(eb2.translate(from_lang="in",to="es"))
+    collection.add_item(eb2)
+    eb3=TextBlob("Third")
+    print(eb3.translate(from_lang="in",to="es"))
+    collection.add_item(eb3)
 
-    print("Straight traversal:")
+    eb4=TextBlob("Straight traversal:")
+    print(eb4.translate(from_lang="in",to="es"))
     print("\n".join(collection))
     print("")
 
-    print("Reverse traversal:")
+
+    eb5=TextBlob("Reverse traversal:")
+    print(eb5.translate(from_lang="in",to="es"))
     print("\n".join(collection.get_reverse_iterator()), end="")

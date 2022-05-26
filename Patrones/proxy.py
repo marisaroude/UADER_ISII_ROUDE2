@@ -4,6 +4,7 @@
 #*--------------------------------------------------
 
 from abc import ABC, abstractmethod
+from textblob import TextBlob
 
 
 class Subject(ABC):
@@ -27,7 +28,8 @@ class RealSubject(Subject):
     """
 
     def request(self) -> None:
-        print("RealSubject: Handling request.")
+        eb1=TextBlob("RealSubject: Handling request.")
+        print(eb1.translate(from_lang="in",to="es"))
 
 
 class Proxy(Subject):
@@ -51,11 +53,13 @@ class Proxy(Subject):
             self.log_access()
 
     def check_access(self) -> bool:
-        print("Proxy: Checking access prior to firing a real request.")
+        eb2=TextBlob("Proxy: Checking access prior to firing a real request.")
+        print(eb2.translate(from_lang="in",to="es"))
         return True
 
     def log_access(self) -> None:
-        print("Proxy: Logging the time of request.", end="")
+        eb3=TextBlob("Proxy: Logging the time of request.")
+        print(eb3.translate(from_lang="in",to="es"), end="")        
 
 
 def client_code(subject: Subject) -> None:
@@ -75,13 +79,15 @@ def client_code(subject: Subject) -> None:
 
 
 if __name__ == "__main__":
-    print("Client: Executing the client code with a real subject:")
+    eb4=TextBlob("Client: Executing the client code with a real subject:")
+    print(eb4.translate(from_lang="in",to="es"))    
     real_subject = RealSubject()
     client_code(real_subject)
 
     print("")
-
-    print("Client: Executing the same client code with a proxy:")
+    
+    eb5=TextBlob("Client: Executing the same client code with a proxy:")
+    print(eb5.translate(from_lang="in",to="es"))   
     proxy = Proxy(real_subject)
     client_code(proxy)
 

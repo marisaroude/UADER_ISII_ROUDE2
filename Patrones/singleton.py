@@ -3,6 +3,7 @@
 #* singleton.py
 #* excerpt from https://refactoring.guru/design-patterns/singleton/python/example
 #*--------------------------------------------------
+from textblob import TextBlob
 class SingletonMeta(type):
     """
     The Singleton class can be implemented in different ways in Python. Some
@@ -32,7 +33,8 @@ class Singleton(metaclass=SingletonMeta):
 
         # ...
     def getid(self):
-        return "MyUniqueID"
+        eb1=TextBlob("My Unique ID")
+        return print(eb1.translate(from_lang="in",to="es"))
 
 if __name__ == "__main__":
     # The client code.
@@ -41,9 +43,12 @@ if __name__ == "__main__":
     s2 = Singleton()
 
     if id(s1) == id(s2):
-        print("Singleton works, both variables contain the same instance.")
+        eb2=TextBlob("Singleton works, both variables contain the same instance.")
+        print(eb2.translate(from_lang="in",to="es")) #Traductor 
+        print()
         print(s1.getid())
     else:
-        print("Singleton failed, variables contain different instances.")
+        eb3=TextBlob("Singleton failed, variables contain different instances.")
+        print(eb3.translate(from_lang="in",to="es")) #Traductor 
 
 

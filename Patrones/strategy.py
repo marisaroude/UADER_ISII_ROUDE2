@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
-
+from textblob import TextBlob
 
 class Context():
     """
@@ -42,7 +42,9 @@ class Context():
 
         # ...
 
-        print("Context: Sorting data using the strategy (not sure how it'll do it)")
+        #print("Context: Sorting data using the strategy (not sure how it'll do it)")
+        eb1=TextBlob("Context: Sorting data using the strategy (not sure how it'll do it)")
+        print(eb1.translate(from_lang="in",to="es"))#Traductor
         result = self._strategy.do_algorithm(["a", "b", "c", "d", "e"])
         print(",".join(result))
 
@@ -85,11 +87,15 @@ if __name__ == "__main__":
     # to make the right choice.
 
     context = Context(ConcreteStrategyA())
-    print("Client: Strategy is set to normal sorting.")
+    #print("Client: Strategy is set to normal sorting.")
+    eb2 = TextBlob("Client: Strategy is set to normal sorting.")
+    print(eb2.translate(from_lang="in",to="es"))#Traductor
     context.do_some_business_logic()
     print()
 
-    print("Client: Strategy is set to reverse sorting.")
+    #print("Client: Strategy is set to reverse sorting.")
+    eb3 = TextBlob("Client: Strategy is set to reverse sorting.")
+    print(eb3.translate(from_lang="in",to="es"))#Traductor
     context.strategy = ConcreteStrategyB()
     context.do_some_business_logic()
     print("\n")

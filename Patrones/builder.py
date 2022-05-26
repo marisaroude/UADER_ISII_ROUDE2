@@ -6,7 +6,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
-
+from textblob import TextBlob
 
 class Builder(ABC):
     """
@@ -96,7 +96,9 @@ class Product1():
         self.parts.append(part)
 
     def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+        eb1=TextBlob("Product parts")
+        print(eb1.translate(from_lang="in",to="es"),f"{', '.join(self.parts)}", end="")
+        #print(f"Product parts: {', '.join(self.parts)}", end="")
 
 
 class Director:
@@ -148,20 +150,23 @@ if __name__ == "__main__":
     builder = ConcreteBuilder1()
     director.builder = builder
 
-    print("Standard basic product: ")
+    eb2=TextBlob("Standard basic product: ")
+    print(eb2.translate(from_lang="in",to="es"))
     director.build_minimal_viable_product()
     builder.product.list_parts()
 
     print("\n")
-
-    print("Standard full featured product: ")
+    eb3=TextBlob("Standard full featured product: ")
+    print(eb3.translate(from_lang="in",to="es"))
     director.build_full_featured_product()
     builder.product.list_parts()
 
     print("\n")
 
     # Remember, the Builder pattern can be used without a Director class.
-    print("Custom product: ")
+    eb4=TextBlob("Custom product: ")
+    print(eb4.translate(from_lang="in",to="es"))
+    print()
     builder.produce_part_a()
     builder.produce_part_b()
     builder.product.list_parts()

@@ -1,5 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from textblob import TextBlob
 
 
 class Context:
@@ -21,8 +22,9 @@ class Context:
         """
         The Context allows changing the State object at runtime.
         """
-
-        print(f"Context: Transition to {type(state).__name__}")
+        eb=TextBlob("Context: Transition to")
+        print(eb.translate(from_lang="in",to="es"),f"{type(state).__name__}")
+        
         self._state = state
         self._state.context = self
 
@@ -70,21 +72,28 @@ Context.
 
 class ConcreteStateA(State):
     def handle1(self) -> None:
-        print("ConcreteStateA handles request1.")
-        print("ConcreteStateA wants to change the state of the context.")
+        eb1=TextBlob("Concrete State A handles request1.")
+        print(eb1.translate(from_lang="in",to="es")) #Traductor 
+        eb2=TextBlob("Concrete State A wants to change the state of the context.")
+        print(eb2.translate(from_lang="in",to="es")) #Traductor 
         self.context.transition_to(ConcreteStateB())
 
     def handle2(self) -> None:
-        print("ConcreteStateA handles request2.")
+        eb3=TextBlob("Concrete State A handles request2.")
+        print(eb3.translate(from_lang="in",to="es")) #Traductor 
+
 
 
 class ConcreteStateB(State):
     def handle1(self) -> None:
-        print("ConcreteStateB handles request1.")
+        eb4=TextBlob("Concrete State B handles request1.")
+        print(eb4.translate(from_lang="in",to="es")) #Traductor 
 
     def handle2(self) -> None:
-        print("ConcreteStateB handles request2.")
-        print("ConcreteStateB wants to change the state of the context.")
+        eb5=TextBlob("Concrete State B handles request2.")
+        print(eb5.translate(from_lang="in",to="es")) #Traductor 
+        eb6=TextBlob("Concrete State B wants to change the state of the context.")
+        print(eb6.translate(from_lang="in",to="es")) #Traductor 
         self.context.transition_to(ConcreteStateA())
 
 
